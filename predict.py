@@ -1,6 +1,5 @@
 import argparse
 import os
-import random
 from shutil import copyfile
 
 import cv2
@@ -18,6 +17,7 @@ from src.config import Config
 from src.edge_connect import EdgeConnect
 
 import tempfile 
+import secrets
 
 
 # Maps object to index
@@ -93,7 +93,7 @@ class Predictor(BasePredictor):
         torch.manual_seed(self.config.SEED)
         torch.cuda.manual_seed_all(self.config.SEED)
         np.random.seed(self.config.SEED)
-        random.seed(self.config.SEED)
+        secrets.SystemRandom().seed(self.config.SEED)
 
         # save to path 
         self.config.TEST_FLIST = image_path
