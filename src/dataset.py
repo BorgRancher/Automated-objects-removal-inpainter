@@ -1,7 +1,6 @@
 import os
 import glob
 import torch
-import random
 import numpy as np
 import torchvision.transforms.functional as F
 from torch.utils.data import DataLoader
@@ -12,6 +11,7 @@ from skimage.color import rgb2gray, gray2rgb
 from .utils import create_mask
 import cv2
 from .segmentor_fcn import segmentor,fill_gaps
+import secrets
 
 
 class Dataset(torch.utils.data.Dataset):
@@ -125,7 +125,7 @@ class Dataset(torch.utils.data.Dataset):
 
             # random sigma
             if sigma == 0:
-                sigma = random.randint(1, 4)
+                sigma = secrets.SystemRandom().randint(1, 4)
 
             return canny(img, sigma=sigma, mask=mask).astype(np.float)
 
