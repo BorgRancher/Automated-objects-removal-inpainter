@@ -1,12 +1,12 @@
 import os
 import cv2
-import random
 import numpy as np
 import torch
 import argparse
 from shutil import copyfile
 from src.config import Config
 from src.edge_connect import EdgeConnect
+import secrets
 
 
 def main(mode=None):
@@ -38,7 +38,7 @@ def main(mode=None):
     torch.manual_seed(config.SEED)
     torch.cuda.manual_seed_all(config.SEED)
     np.random.seed(config.SEED)
-    random.seed(config.SEED)
+    secrets.SystemRandom().seed(config.SEED)
 
 
 
